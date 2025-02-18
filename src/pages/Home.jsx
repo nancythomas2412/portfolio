@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <section className="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-b from-gray-900 to-black text-white">
-      {/* Animated Intro */}
+    <section className="h-screen flex flex-col justify-center items-center text-center transition-all duration-500 dark:text-gray-600 relative overflow-hidden">
+      {/* Hero Section */}
       <motion.h1
-        className="text-5xl md:text-6xl font-extrabold"
+        className="text-5xl md:text-6xl font-extrabold tracking-tight leading-tight"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        Hi, I'm <span className="text-blue-400">Nancy</span>
+        Hi, I'm <span className="dark:text-blue-400">Nancy Thomas</span>
       </motion.h1>
 
       <motion.p
-        className="text-lg md:text-2xl mt-4 text-gray-300"
+        className="mt-4 text-lg md:text-xl max-w-3xl dark:text-gray-300"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
@@ -32,26 +32,16 @@ function Home() {
       >
         <Link
           to="/projects"
-          className="px-6 py-3 bg-blue-500 rounded-full text-lg font-semibold hover:bg-blue-600 transition"
+          className="px-6 py-3 bg-blue-500 dark:bg-blue-600 text-white rounded-full text-lg font-semibold hover:bg-blue-600 dark:hover:bg-blue-700 transition"
         >
           View My Work
         </Link>
         <Link
           to="/contact"
-          className="px-6 py-3 border border-white rounded-full text-lg font-semibold hover:bg-white hover:text-black transition"
+          className="px-6 py-3 border border-blue-600 dark:border-gray-200 text-red-800 dark:text-gray-200 rounded-full text-lg font-semibold hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-black transition"
         >
           Contact Me
         </Link>
-      </motion.div>
-
-      {/* Background Animation */}
-      <motion.div
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.1)_0%,rgba(0,0,0,0)_70%)]"></div>
       </motion.div>
     </section>
   );

@@ -1,12 +1,16 @@
 import { motion } from "framer-motion";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGithub } from "react-icons/fa";
+import { useTheme } from "../pages/context/ThemeContext";
+
 
 function About() {
+  const { darkMode } = useTheme();
+
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center text-center bg-gray-900 text-white px-6">
+    <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 dark:text-gray-100">
       {/* Animated Heading */}
       <motion.h1
-        className="text-4xl md:text-5xl font-bold"
+        className="text-4xl md:text-5xl font-bold text-black"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
@@ -16,7 +20,7 @@ function About() {
 
       {/* Short Bio */}
       <motion.p
-        className="mt-4 text-lg md:text-xl max-w-3xl text-gray-300"
+        className="mt-4 text-lg md:text-xl max-w-3xl text-gray-400"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
@@ -39,6 +43,7 @@ function About() {
         <SkillCard icon={<FaGithub />} name="GitHub" />
       </motion.div>
     </section>
+
   );
 }
 

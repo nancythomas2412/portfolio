@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { useTheme } from "../pages/context/ThemeContext";
+
 
 function Projects() {
   const [activeTab, setActiveTab] = useState("latest");
+  const { darkMode } = useTheme();
+
 
   // Latest projects
   const latestProjects = [
@@ -43,7 +47,7 @@ function Projects() {
   ];
 
   return (
-    <section className="min-h-screen bg-gray-900 text-white flex flex-col items-center py-12 px-6">
+    <section className="min-h-screen text-white flex flex-col items-center py-12 px-6 dark:text-[var(--primary-dark)]">
       {/* Animated Heading */}
       <motion.h1
         className="text-4xl md:text-5xl font-bold"

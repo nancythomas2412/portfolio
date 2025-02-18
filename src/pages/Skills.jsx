@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGithub } from "react-icons/fa";
 import { SiTailwindcss, SiMongodb, SiFirebase } from "react-icons/si";
+import { useTheme } from "../pages/context/ThemeContext";
+
 
 function Skills() {
+  const { darkMode } = useTheme();
+
   const skills = [
     { name: "HTML", icon: <FaHtml5 className="text-orange-500" /> },
     { name: "CSS", icon: <FaCss3Alt className="text-blue-500" /> },
@@ -16,7 +20,7 @@ function Skills() {
   ];
 
   return (
-    <section className="min-h-screen bg-gray-900 text-white flex flex-col items-center py-12 px-6">
+    <section className="min-h-screen text-white flex flex-col items-center py-12 px-6 dark:text-[var(--primary-dark)]">
       {/* Animated Heading */}
       <motion.h1
         className="text-4xl md:text-5xl font-bold"

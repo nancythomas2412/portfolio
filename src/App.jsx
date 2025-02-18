@@ -7,10 +7,12 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
+import { ThemeProvider } from "../src/pages/context/ThemeContext"; // Import the theme provider
 
 function App() {
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
+    <ThemeProvider>
+      <div className="transition-all duration-500">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -21,6 +23,7 @@ function App() {
       </Routes>
       <Footer />
     </div>
+    </ThemeProvider>
   );
 }
 
