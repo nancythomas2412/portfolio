@@ -1,24 +1,22 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom"; // Import useLocation
 import { motion } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "../pages/context/ThemeContext";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("theme") === "dark");
+  const { darkMode, setDarkMode } = useTheme();
+  const location = useLocation(); // Get current URL path
 
-  useEffect(() => {
-    document.body.classList.toggle("dark", darkMode);
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  const navItems = ["Home", "About", "Projects", "Skills", "Contact"];
 
   return (
-    <nav
-      className="fixed top-0 left-0 w-full z-50 transition-all duration-300"
-      style={{
-        color: darkMode ? "var(--text-dark)" : "var(--text-light)", // Adjust text color based on theme
-      }}
-    >
+    <nav className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <motion.h1
@@ -32,26 +30,35 @@ function Navbar() {
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex space-x-6 text-lg">
-          {["Home", "About", "Projects", "Skills", "Contact"].map((item) => (
-            <motion.li key={item} whileHover={{ scale: 1.1 }}>
-              <Link
-                to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                className={`${
-                  darkMode ? "text-gray-200" : "text-gray-800"
-                } hover:text-blue-500 transition-colors duration-200`}
-              >
-                {item}
-              </Link>
-            </motion.li>
-          ))}
+          {navItems.map((item) => {
+            const path = item === "Home" ? "/" : `/${item.toLowerCase()}`;
+            const isActive = location.pathname === path; // Check if current page matches
+
+            return (
+              <motion.li key={item} whileHover={{ scale: 1.1 }}>
+                <Link
+                  to={path}
+                  className={`transition-colors duration-200 ${
+                    isActive ? "text-blue-500 font-semibold" : "hover:text-blue-500"
+                  }`}
+                >
+                  {item}
+                </Link>
+              </motion.li>
+            );
+          })}
         </ul>
 
         {/* Theme Toggle Button */}
         <button
-          onClick={() => setDarkMode(!darkMode)}
+          onClick={toggleDarkMode}
           className="p-2 rounded-full transition-all duration-300"
         >
-          {darkMode ? <Sun className="w-6 h-6 text-yellow-400" /> : <Moon className="w-6 h-6 text-gray-800" />}
+          {darkMode ? (
+            <Sun className="w-6 h-6 text-yellow-400" />
+          ) : (
+            <Moon className="w-6 h-6 text-gray-800" />
+          )}
         </button>
 
         {/* Mobile Menu Button */}
@@ -62,23 +69,24 @@ function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <motion.div
-          className="md:hidden flex flex-col items-center py-4"
-          style={{
-            color: darkMode ? "var(--text-dark)" : "var(--text-light)",
-          }}
-        >
-          {["Home", "About", "Projects", "Skills", "Contact"].map((item) => (
-            <Link
-              key={item}
-              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              className="text-lg py-2"
-              onClick={() => setIsOpen(false)}
-              style={{ color: darkMode ? "var(--text-dark)" : "var(--text-light)" }}
-            >
-              {item}
-            </Link>
-          ))}
+        <motion.div className="md:hidden flex flex-col items-center py-4">
+          {navItems.map((item) => {
+            const path = item === "Home" ? "/" : `/${item.toLowerCase()}`;
+            const isActive = location.pathname === path;
+
+            return (
+              <Link
+                key={item}
+                to={path}
+                className={`text-lg py-2 ${
+                  isActive ? "text-blue-500 font-semibold" : ""
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {item}
+              </Link>
+            );
+          })}
         </motion.div>
       )}
     </nav>

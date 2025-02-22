@@ -1,16 +1,14 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-import { useTheme } from "../pages/context/ThemeContext";
 
 
 function Contact() {
-  const { darkMode } = useTheme();
 
   return (
     <section className="min-h-screen text-white flex flex-col items-center py-12 px-6 dark:text-[var(--primary-dark)]">
       {/* Animated Heading */}
       <motion.h1
-        className="text-4xl md:text-5xl font-bold"
+        className="text-4xl md:text-5xl font-bold text-black dark:text-white"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}

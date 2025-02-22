@@ -1,16 +1,13 @@
 import { motion } from "framer-motion";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGithub } from "react-icons/fa";
-import { useTheme } from "../pages/context/ThemeContext";
 
 
 function About() {
-  const { darkMode } = useTheme();
-
   return (
     <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 dark:text-gray-100">
       {/* Animated Heading */}
       <motion.h1
-        className="text-4xl md:text-5xl font-bold text-black"
+        className="text-4xl md:text-5xl font-bold text-black dark:text-white"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
@@ -31,7 +28,7 @@ function About() {
 
       {/* Skills Section */}
       <motion.div
-        className="mt-8 flex flex-wrap justify-center gap-6"
+        className="mt-8 flex flex-wrap justify-center gap-6 "
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
@@ -54,7 +51,7 @@ const SkillCard = ({ icon, name }) => (
     whileHover={{ scale: 1.1 }}
   >
     <div className="text-5xl text-blue-400">{icon}</div>
-    <p className="mt-2 text-lg font-semibold">{name}</p>
+    <p className="mt-2 text-lg font-semibold text-white">{name}</p>
   </motion.div>
 );
 
