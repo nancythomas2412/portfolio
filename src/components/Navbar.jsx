@@ -1,45 +1,83 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom"; // Import useLocation
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "../pages/context/ThemeContext";
+import me from '../assets/me.jpeg';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { darkMode, setDarkMode } = useTheme();
-  const location = useLocation(); // Get current URL path
+  const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Detect scroll only on mobile
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isMobile && window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobile]);
 
   const navItems = ["Home", "About", "Projects", "Skills", "Contact"];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo */}
-        <motion.h1
-          className="text-2xl font-bold"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isMobile && isScrolled ? "backdrop-blur-md py-2" : "py-4"
+      }`}
+    >
+      <div
+        className={`w-full px-6 flex justify-between items-center transition-all duration-300 ${
+          isMobile && isScrolled ? "scale-90" : "scale-100"
+        }`}
+      >
+        {/* Logo - Moves left on scroll */}
+        {/* <motion.h1
+          className={`font-bold transition-all duration-300 ${
+            isMobile && isScrolled ? "text-sm translate-x-[-10px]" : "text-2xl"
+          }`}
         >
           My Portfolio
-        </motion.h1>
+        </motion.h1> */}
+        <motion.img
+          src={me}
+          alt="My Image"
+          className={`rounded-full object-cover aspect-square transition-all duration-300 ${
+            isMobile && isScrolled ? "w-10 h-10 translate-x-[-10px]" : "w-16 h-16"
+          }`}
+        />
 
-        {/* Desktop Navigation */}
-        <ul className="hidden md:flex space-x-6 text-lg">
+        {/* Desktop Navigation - Shrinks with navbar */}
+        <ul
+          className={`hidden md:flex space-x-6 transition-all duration-300 ${
+            isMobile && isScrolled ? "text-sm" : "text-lg"
+          }`}
+        >
           {navItems.map((item) => {
             const path = item === "Home" ? "/" : `/${item.toLowerCase()}`;
-            const isActive = location.pathname === path; // Check if current page matches
-
+            const isActive = location.pathname === path;
             return (
               <motion.li key={item} whileHover={{ scale: 1.1 }}>
                 <Link
                   to={path}
                   className={`transition-colors duration-200 ${
-                    isActive ? "text-blue-500 font-semibold" : "hover:text-blue-500"
+                    isActive
+                      ? "text-blue-500 font-semibold"
+                      : "hover:text-blue-500"
                   }`}
                 >
                   {item}
@@ -49,10 +87,12 @@ function Navbar() {
           })}
         </ul>
 
-        {/* Theme Toggle Button */}
+        {/* Theme Toggle Button - Shrinks */}
         <button
-          onClick={toggleDarkMode}
-          className="p-2 rounded-full transition-all duration-300"
+          onClick={() => setDarkMode(!darkMode)}
+          className={`p-2 rounded-full transition-all duration-300 ${
+            isMobile && isScrolled ? "scale-75" : "scale-100"
+          }`}
         >
           {darkMode ? (
             <Sun className="w-6 h-6 text-yellow-400" />

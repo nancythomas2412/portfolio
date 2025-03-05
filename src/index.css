@@ -5,6 +5,10 @@
 html {
   scroll-behavior: smooth;
   cursor: pointer;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-bottom: 1%;
+  margin-top: 1%;
 }
 
 :root {
@@ -38,7 +42,6 @@ html.dark body {
   background-color: var(--bg-dark);
   color: var(--text-dark);
 }
-
 
 /* Button Styling */
 .btn {
@@ -79,7 +82,7 @@ nav {
   padding: 10px 0;
   color: var(--text-light);
   /* background-color: rgba(255, 255, 255, 0.8); */
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
   transition: background-color 0.3s;
 }
 
@@ -124,4 +127,31 @@ section {
 
 a {
   transition: color 0.3s;
+}
+
+.avatar-container {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  width: 100vh;
+  height: 100vh;
+  max-width: 90vh;
+}
+/* Adjust max-width for smaller screens */
+@media (max-width: 768px) {
+  .avatar-container {
+    max-width: 40vh;
+    max-height: 40vh;
+  }
+  .content-home{
+    max-height: 250px;
+  }
+}
+
+/* Further reduce size on very small screens */
+@media (max-width: 480px) {
+  .avatar-container {
+    max-width: 50vh;
+    max-height: 45vh;
+  }
 }
