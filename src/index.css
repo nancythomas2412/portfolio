@@ -133,25 +133,21 @@ a {
   display: block;
   margin: 0 auto;
   padding: 0;
-  width: 100vh;
-  height: 100vh;
+  width: 45vw;
+  height: auto;
   max-width: 90vh;
 }
-/* Adjust max-width for smaller screens */
-@media (max-width: 768px) {
+
+/* Two columns on larger screens */
+@media (min-width: 768px) {
   .avatar-container {
-    max-width: 40vh;
-    max-height: 40vh;
-  }
-  .content-home{
-    max-height: 250px;
-  }
+    grid-template-columns: 1fr 1fr;}
 }
 
-/* Further reduce size on very small screens */
-@media (max-width: 480px) {
+/* Two rows on smaller screens */
+@media (max-width: 767px) {
   .avatar-container {
     max-width: 50vh;
-    max-height: 45vh;
+    grid-template-rows: auto auto;
   }
 }

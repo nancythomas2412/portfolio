@@ -10,14 +10,19 @@ import eyeRImg from "../assets/eyeR.webp";
 import eyebrowsImg from "../assets/eyebrows.webp";
 
 const MAX_EYE_OFFSET_X = 12; // Limit horizontal eye movement
-const MAX_EYE_OFFSET_Y = 8;  // Limit vertical eye movement
-const MAX_HEAD_OFFSET = 10;  // Head movement range
+const MAX_EYE_OFFSET_Y = 8; // Limit vertical eye movement
+const MAX_HEAD_OFFSET = 10; // Head movement range
 
 // Utility function to clamp values within a given range
 const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
 
 const Avatar = () => {
-  const [eyePosition, setEyePosition] = useState({ leftX: 0, leftY: 0, rightX: 0, rightY: 0 });
+  const [eyePosition, setEyePosition] = useState({
+    leftX: 0,
+    leftY: 0,
+    rightX: 0,
+    rightY: 0,
+  });
   const [headPosition, setHeadPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = useCallback(({ clientX, clientY }) => {
@@ -28,8 +33,16 @@ const Avatar = () => {
     const offsetY = (clientY - centerY) / centerY;
 
     // Clamp values so eyes never move outside the sclera
-    const eyeOffsetX = clamp(offsetX * MAX_EYE_OFFSET_X, -MAX_EYE_OFFSET_X, MAX_EYE_OFFSET_X);
-    const eyeOffsetY = clamp(offsetY * MAX_EYE_OFFSET_Y, -MAX_EYE_OFFSET_Y, MAX_EYE_OFFSET_Y);
+    const eyeOffsetX = clamp(
+      offsetX * MAX_EYE_OFFSET_X,
+      -MAX_EYE_OFFSET_X,
+      MAX_EYE_OFFSET_X
+    );
+    const eyeOffsetY = clamp(
+      offsetY * MAX_EYE_OFFSET_Y,
+      -MAX_EYE_OFFSET_Y,
+      MAX_EYE_OFFSET_Y
+    );
 
     setEyePosition({
       leftX: eyeOffsetX,
@@ -52,11 +65,17 @@ const Avatar = () => {
   return (
     <motion.svg
       className="avatar-container"
-      viewBox="0 0 1000 1000"
+      viewBox="120 90 1000 1000"
       preserveAspectRatio="xMidYMid meet"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 120, damping: 6, mass: 1, velocity: -9 }}
+      transition={{
+        type: "spring",
+        stiffness: 120,
+        damping: 6,
+        mass: 1,
+        velocity: -9,
+      }}
     >
       {/* Hair (Moves with head) */}
       <motion.image

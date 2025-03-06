@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGithub } from "react-icons/fa";
 
-
 function About() {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 dark:text-gray-100">
@@ -22,12 +21,13 @@ function About() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
-        Hi! I'm <span className="text-blue-400">Nancy</span>, a passionate Frontend Developer and Digital Artist.
-        I love building interactive, user-friendly web experiences and creating stunning digital art.
+        A passionate Frontend Developer, Designer, Digital Artist, 2D Animator,
+        and many more. I love designing and building interactive, user-friendly
+        web experiences and creating stunning digital arts.
       </motion.p>
 
       {/* Skills Section */}
-      <motion.div
+      {/* <motion.div
         className="mt-8 flex flex-wrap justify-center gap-6 "
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -38,9 +38,8 @@ function About() {
         <SkillCard icon={<FaJs />} name="JavaScript" />
         <SkillCard icon={<FaReact />} name="ReactJS" />
         <SkillCard icon={<FaGithub />} name="GitHub" />
-      </motion.div>
+      </motion.div> */}
     </section>
-
   );
 }
 

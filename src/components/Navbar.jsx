@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "../pages/context/ThemeContext";
-import me from '../assets/me.jpeg';
+import myLogo from "../assets/myLogo.png";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +36,7 @@ function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-2xl ${
         isMobile && isScrolled ? "backdrop-blur-md py-2" : "py-4"
       }`}
     >
@@ -45,19 +45,13 @@ function Navbar() {
           isMobile && isScrolled ? "scale-90" : "scale-100"
         }`}
       >
-        {/* Logo - Moves left on scroll */}
-        {/* <motion.h1
-          className={`font-bold transition-all duration-300 ${
-            isMobile && isScrolled ? "text-sm translate-x-[-10px]" : "text-2xl"
-          }`}
-        >
-          My Portfolio
-        </motion.h1> */}
         <motion.img
-          src={me}
-          alt="My Image"
+          src={myLogo}
+          alt="My Logo"
           className={`rounded-full object-cover aspect-square transition-all duration-300 ${
-            isMobile && isScrolled ? "w-10 h-10 translate-x-[-10px]" : "w-16 h-16"
+            isMobile && isScrolled
+              ? "w-10 h-10 translate-x-[-10px]"
+              : "w-16 h-16"
           }`}
         />
 
