@@ -48,7 +48,7 @@ function Navbar() {
         <motion.img
           src={myLogo}
           alt="My Logo"
-          className={`rounded-full object-cover aspect-square transition-all duration-300 ${
+          className={`rounded-full object-cover aspect-square transition-all duration-300 md:ml-12 lg:ml-16 ${
             isMobile && isScrolled ? "w-10 h-10 translate-x-[-10px]" : "w-16 h-16"
           }`}
         />

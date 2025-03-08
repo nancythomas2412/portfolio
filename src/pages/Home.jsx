@@ -4,7 +4,7 @@ import Avatar from "../components/Avatar";
 
 function Home() {
   return (
-    <section className="max-w-full flex flex-col justify-center items-center p-2 sm:p-4">
+    <section className="max-w-full flex flex-col justify-center items-center p-2 sm:p-4 md:ml-10 lg:ml-20">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Avatar (On Top for Small Screens, Right for Large Screens) */}
         <div className="order-1 sm:order-2 flex justify-center items-center">
