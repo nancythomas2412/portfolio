@@ -5,10 +5,7 @@
 html {
   scroll-behavior: smooth;
   cursor: pointer;
-  margin-left: 1%;
-  margin-right: 1%;
-  margin-bottom: 1%;
-  margin-top: 1%;
+  margin: 1%;
 }
 
 :root {
@@ -23,7 +20,6 @@ html {
   --text-dark: #d9dadd; /* Dark Text */
 }
 
-/* Smooth transition */
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--bg-light);
@@ -31,19 +27,16 @@ body {
   transition: background-color 0.5s, color 0.5s;
 }
 
-/* Apply dark mode to html instead of body */
 html.dark {
   background-color: var(--bg-dark);
   color: var(--text-dark);
 }
 
-/* Ensure sections and other elements inherit the dark theme */
 html.dark body {
   background-color: var(--bg-dark);
   color: var(--text-dark);
 }
 
-/* Button Styling */
 .btn {
   padding: 10px 20px;
   border-radius: 8px;
@@ -65,7 +58,6 @@ html.dark body {
   background: var(--secondary-dark);
 }
 
-/* Container for spacing */
 .container {
   width: 90%;
   max-width: 100%;
@@ -73,7 +65,6 @@ html.dark body {
   padding: 2rem 0;
 }
 
-/* Navbar Styling */
 nav {
   position: sticky;
   top: 0;
@@ -81,8 +72,6 @@ nav {
   width: 100%;
   padding: 10px 0;
   color: var(--text-light);
-  /* background-color: rgba(255, 255, 255, 0.8); */
-  /* backdrop-filter: blur(10px); */
   transition: background-color 0.3s;
 }
 
@@ -90,7 +79,6 @@ nav {
   color: var(--text-dark);
 }
 
-/* Section Spacing */
 section {
   min-height: 100vh;
   display: flex;
@@ -99,7 +87,6 @@ section {
   text-align: center;
 }
 
-/* Project Card */
 .project-card {
   background: #1e293b;
   padding: 20px;
@@ -112,7 +99,6 @@ section {
   transform: translateY(-5px);
 }
 
-/* Flexbox for better layout */
 .flex-row {
   display: flex;
   flex-wrap: wrap;
@@ -120,7 +106,6 @@ section {
   justify-content: center;
 }
 
-/* Improved contrast for dark mode links */
 .dark a {
   color: var(--text-dark);
 }
@@ -138,13 +123,12 @@ a {
   max-width: 90vh;
 }
 
-/* Two columns on larger screens */
 @media (min-width: 768px) {
   .avatar-container {
-    grid-template-columns: 1fr 1fr;}
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-/* Two rows on smaller screens */
 @media (max-width: 767px) {
   .avatar-container {
     max-width: 50vh;

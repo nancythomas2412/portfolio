@@ -9,9 +9,9 @@ import scleraR from "../assets/whiteR.webp";
 import eyeRImg from "../assets/eyeR.webp";
 import eyebrowsImg from "../assets/eyebrows.webp";
 
-const MAX_EYE_OFFSET_X = 12; // Limit horizontal eye movement
-const MAX_EYE_OFFSET_Y = 8; // Limit vertical eye movement
-const MAX_HEAD_OFFSET = 10; // Head movement range
+const MAX_EYE_OFFSET_X = 10; // Limit horizontal eye movement
+const MAX_EYE_OFFSET_Y = 6; // Limit vertical eye movement
+const MAX_HEAD_OFFSET = 8; // Head movement range
 
 // Utility function to clamp values within a given range
 const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
@@ -60,7 +60,7 @@ const Avatar = () => {
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [handleMouseMove]);
 
   return (
     <motion.svg
