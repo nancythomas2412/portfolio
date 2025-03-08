@@ -12,6 +12,8 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
+  const navItems = ["Home", "About", "Projects", "Skills", "Contact"];
+
   // Handle window resize
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -32,8 +34,6 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobile]);
 
-  const navItems = ["Home", "About", "Projects", "Skills", "Contact"];
-
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-2xl ${
@@ -49,13 +49,11 @@ function Navbar() {
           src={myLogo}
           alt="My Logo"
           className={`rounded-full object-cover aspect-square transition-all duration-300 ${
-            isMobile && isScrolled
-              ? "w-10 h-10 translate-x-[-10px]"
-              : "w-16 h-16"
+            isMobile && isScrolled ? "w-10 h-10 translate-x-[-10px]" : "w-16 h-16"
           }`}
         />
 
-        {/* Desktop Navigation - Shrinks with navbar */}
+        {/* Desktop Navigation */}
         <ul
           className={`hidden md:flex space-x-6 transition-all duration-300 ${
             isMobile && isScrolled ? "text-sm" : "text-lg"
@@ -69,9 +67,7 @@ function Navbar() {
                 <Link
                   to={path}
                   className={`transition-colors duration-200 ${
-                    isActive
-                      ? "text-blue-500 font-semibold"
-                      : "hover:text-blue-500"
+                    isActive ? "text-blue-500 font-semibold" : "hover:text-blue-500"
                   }`}
                 >
                   {item}
@@ -81,7 +77,7 @@ function Navbar() {
           })}
         </ul>
 
-        {/* Theme Toggle Button - Shrinks */}
+        {/* Theme Toggle Button */}
         <button
           onClick={() => setDarkMode(!darkMode)}
           className={`p-2 rounded-full transition-all duration-300 ${

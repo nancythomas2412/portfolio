@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
-
 function Contact() {
-
   return (
     <section className="min-h-screen text-white flex flex-col items-center py-12 px-6 dark:text-[var(--primary-dark)]">
       {/* Animated Heading */}

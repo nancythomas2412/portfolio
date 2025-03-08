@@ -2,9 +2,7 @@ import { motion } from "framer-motion";
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGithub } from "react-icons/fa";
 import { SiTailwindcss, SiMongodb, SiFirebase } from "react-icons/si";
 
-
 function Skills() {
-
   const skills = [
     { name: "HTML", icon: <FaHtml5 className="text-orange-500" /> },
     { name: "CSS", icon: <FaCss3Alt className="text-blue-500" /> },
